@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gamer.core.dao.QuestionDao">
+	<select id="findQuestionById" parameterType="Integer" resultType="question">
+		select * from questions where id=#{id}
+	</select>
+	<select id="findAllQuestion" resultType="question">
+		select * from questions
+	</select>
+	<select id="findQuestionByTitle" resultType="question">
+		select * from questions where question=#{title}
+	</select>
+	<insert id="addQuestion" >
+		insert into questions(user_id,question,content,date) value(#{q.user_id},#{q.question},#{q.content},#{q.date})
+	</insert>
+</mapper>

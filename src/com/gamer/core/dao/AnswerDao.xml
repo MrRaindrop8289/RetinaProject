@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace为名称空间，意为解释该映射所对应的接口文件 -->
+<mapper namespace="com.gamer.core.dao.AnswerDao">
+	<select id="findAllAnswerById" parameterType="Integer" resultType="Answer">
+		select * from answers where id=#{id}
+	</select>
+	<insert id="addAnswer" parameterType="answer">
+		insert into answers(question_id,user_id,answer,date) 
+					value(#{question_id},#{user_id},#{answer},#{date})
+	</insert>
+	<update id="updateAnswer" parameterType="answer">
+		update answers set answer=#{answer} where id=#{id}
+	</update>
+	<update id="addLikes" parameterType="answer">
+		update answers set likes=#{likes} where id=#{id}
+	</update>
+</mapper>

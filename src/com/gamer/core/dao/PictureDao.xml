@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gamer.core.dao.PictureDao">
+	<select id="findPictureById" parameterType="Integer" resultType="picture">
+		select * from picture where id=#{id}
+	</select>
+	<select id="findAllPicture" resultType="picture">
+		select * from picture
+	</select>
+	<select id="findAllDischeck" parameterType="Integer" resultType="picture">
+		select * from picture
+		<![CDATA[
+		 where times < 3 and doctor1!=#{id} and doctor2!=#{id} and doctor3!=#{id}
+		 ]]>
+	</select>
+	<select id="findStudentPicture" resultType="picture">
+		select * from picture
+		<![CDATA[
+		 where times = 3 and same = 0
+		 ]]>
+	</select>
+	<update id="updatePicture" parameterType="picture">
+		update picture set doctor1=#{doctor1},point1_x=#{point1_x},point1_y=#{point1_y},
+							doctor2=#{doctor2},point2_x=#{point2_x},point2_y=#{point2_y},
+							doctor3=#{doctor3},point3_x=#{point3_x},point3_y=#{point3_y},
+							doctor_pro=#{doctor_pro},point_x=#{point_x},point_y=#{point_y},
+							same=#{same},times=#{times}
+				where id=#{id}
+	</update>
+	<insert id="addPicture">
+		insert into picture(src_image,date) values(#{p.src_image},#{p.date})
+	</insert>
+</mapper>
